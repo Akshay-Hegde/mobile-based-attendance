@@ -1,7 +1,7 @@
-# Ionic 1 - Youstart Sample
+# Mobile Base Attendance (Self- Hackathon)
 
 
-A starting project for Ionic that optionally supports using custom SCSS.
+A hybrid app for professors to take attendance, view reports and manage students
 
 ## Using this project
 
@@ -19,12 +19,12 @@ You must have cordova installed prior to this.
 
 
 
-## Installation this project
+## Installation for this project
 
 * Clone  project from github repo :
 
 ```bash
-	git clone https://github.com/abhishekrathore/Ionic1-Sample
+	git clone https://github.com/demonVibe/mobile-based-attendance
 ```
 
 * Install npm dependecies
@@ -58,17 +58,6 @@ You must have cordova installed prior to this.
 	ionic state restore --plugins
 ```
 
-* Initialize the new git
-```
-	git init
-```
-
-* Setup the new git remotes accordingly
-```
-	git remote add origin <new remote>
-```
-
-
 ## Plugins List
 
 ```bash
@@ -76,25 +65,8 @@ You must have cordova installed prior to this.
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-inappbrowser",
-    "cordova-plugin-geolocation",
-    "cordova-plugin-x-toast",
-    "cordova-plugin-android-permissions",
-    "cordova-plugin-camera",
     "cordova-plugin-compat",
-    "cordova-plugin-dialogs@1.3.1",
-    "cordova-plugin-file",
-    "cordova-plugin-file-transfer",
-    "cordova-plugin-geolocation",
-    "cordova-plugin-image-picker",
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-network-information",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "cordova.plugins.diagnostic@3.1"
-
 ```
-
-
