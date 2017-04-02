@@ -1,0 +1,45 @@
+<ion-modal-view>
+	<ion-header-bar>
+		<div class="buttons">
+			<button class="button button-icon icon ion-android-close" ng-click="ac.closeModal()"></button>
+		</div>
+		<h1 class="title">Add Entry</h1>
+		<div class="buttons">
+			<button
+					class="button button-icon icon ion-checkmark"
+					ng-click="ac.addAsset(ac.entry)">
+			</button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<div class="row">
+			<div class="col">
+				<div class="list">
+
+					<label class="item item-input item-select">
+						<div class="input-label">
+							Reference
+						</div>
+						<select ng-options="option as option for option in ac.entry.options | orderBy: option" ng-model="ac.entry.ref" >
+							<option value="" disabled selected>Select</option>
+							<option>{{option}}</option>
+						</select>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-if="ac.entry.ref">
+			<div class="col">
+				<div class="list">
+					<label class="item item-input item-floating-label">
+						<span class="input-label">Amount</span>
+						<input ng-model="ac.entry.amount" type="number" placeholder="Amount">
+					</label>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar class="bar-stable" align-title="center" ng-click="ac.addAsset(ac.entry)">
+		<h1 class="title">Create Entry</h1>
+	</ion-footer-bar>
+</ion-modal-view>

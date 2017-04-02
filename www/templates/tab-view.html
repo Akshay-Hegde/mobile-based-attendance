@@ -1,0 +1,25 @@
+<ion-view view-title="Report">
+  <ion-nav-buttons side="right">
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <div ng-if="!vc.entries.length">
+      Add an Entry using the top right + icon
+    </div>
+    <div class="row" style="text-align: center" ng-if="vc.entries.length!=0">
+      <div class="col-20">
+        <h4>Amount</h4>
+      </div>
+      <div class="col-80">
+        <h4>Reference</h4>
+      </div>
+    </div>
+    <div class="row list" style="text-align: center" ng-repeat="entry in vc.entries">
+      <div class="col-20">
+        {{entry.amount| currency : '₹' : 2}}
+      </div>
+      <div class="col-80">
+        {{entry.ref}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

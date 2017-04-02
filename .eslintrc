@@ -1,0 +1,181 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "rules": {
+    "indent": [
+      "warn",
+      4
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "no-cond-assign": [
+      "error",
+      "always"
+    ],
+    "no-console": [
+      "off"
+    ],
+    "eqeqeq": [
+      "warn"
+    ],
+    "curly": [
+      "error"
+    ],
+    "no-empty": [
+      "error"
+    ],
+    "no-undef": [
+      "error"
+    ],
+    "no-use-before-define": [
+      "warn",
+      {
+        "functions": false,
+        "classes": true
+      }
+    ],
+    "strict": [
+      "warn"
+    ],
+    "max-depth": [
+      "warn",
+      3
+    ],
+    "max-statements": [
+      "warn",
+      40
+    ],
+    "new-cap": [
+      "error"
+    ],
+    "no-new": [
+      "error"
+    ],
+    "complexity": [
+      "error",
+      8
+    ],
+    "no-eq-null": [
+      "error"
+    ],
+    "no-eval": [
+      "error"
+    ],
+    "no-unused-expressions": [
+      "warn"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-loop-func": [
+      "error"
+    ],
+    "no-param-reassign": [
+      "warn"
+    ],
+    "no-multi-str": [
+      "warn"
+    ],
+    "no-shadow": [
+      "error"
+    ],
+    "no-shadow-restricted-names": [
+      "error"
+    ],
+    "no-trailing-spaces": [
+      "warn"
+    ],
+    "prefer-arrow-callback": [
+      "warn"
+    ],
+    "arrow-parens": [
+      "warn"
+    ],
+    "arrow-body-style": [
+      "warn"
+    ],
+    "no-nested-ternary": [
+      "error"
+    ],
+    "brace-style": [
+      "warn"
+    ],
+    "eol-last": [
+      "error"
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "never"
+    ],
+    "no-multiple-empty-lines": [
+      "error"
+    ],
+    "comma-style": [
+      "error",
+      "last"
+    ],
+    "dot-notation": [
+      "error"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "prefer-const": [
+      "error"
+    ],
+    "no-const-assign": [
+      "error"
+    ],
+    "no-var": [
+      "error"
+    ],
+    "no-new-object": [
+      "error"
+    ],
+    "object-shorthand": [
+      "warn"
+    ],
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "radix": [
+      "warn"
+    ],
+    "id-length": [
+      "error",
+      { "exceptions": ["i","j","k"] }
+    ],
+    "camelcase": [
+      "error"
+    ]
+  },
+  "globals": {
+    "jQuery": false,
+    "$": true,
+    "console": false,
+    "angular": false,
+    "require": false,
+    "window": false,
+    "cordova": false,
+    "StatusBar": false
+
+  }
+}
