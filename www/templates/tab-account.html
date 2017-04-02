@@ -1,4 +1,7 @@
 <ion-view view-title="Manage Students">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon ion-android-add" ng-click="ac.openModal()"></button>
+  </ion-nav-buttons>
   <ion-content class="padding">
     <div class="list">
       <label class="item item-input item-select">
@@ -10,7 +13,7 @@
         </select>
       </label>
       <label class="item item-input item-select" ng-if="department">
-        <div class="input-label">f
+        <div class="input-label">
           Section
         </div>
         <select ng-change="selectedSection(department, section)" ng-model="section">
@@ -19,9 +22,12 @@
       </label>
       <hr>
       <ion-list>
-        <ion-checkbox ng-model="student.present" ng-checked="student.present"
-                      ng-repeat="student in ac.students track by $index">{{student.roll}}. {{student.name}}
-        </ion-checkbox>
+        <div class="item item-button-right" ng-repeat="student in ac.students track by $index">
+          {{student.roll}}. {{student.name}}
+          <button class="button" ng-click="ac.removeStudent(student)">
+            <i class="icon ion-android-delete"></i>
+          </button>
+        </div>
       </ion-list>
     </div>
   </ion-content>

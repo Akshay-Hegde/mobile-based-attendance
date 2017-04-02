@@ -20,9 +20,8 @@
         </select>
       </label>
       <hr>
-      <ion-list disabled>
-        <ion-checkbox ng-model="student.present" ng-checked="student.present"
-                      ng-repeat="student in vc.students track by $index">{{student.roll}}. {{student.name}}
+      <ion-list>
+        <ion-checkbox ng-model="student.present" ng-checked="student.present" ng-repeat="student in vc.students track by $index">{{student.roll}}. {{student.name}}
         </ion-checkbox>
       </ion-list>
     </div>

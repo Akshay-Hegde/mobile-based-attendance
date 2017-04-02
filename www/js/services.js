@@ -1,5 +1,5 @@
 angular.module('starter.services', [])
-    
+
 .factory('db', function($localForage) {
 
   var RegisterKey = 'Register' + ' ' + new Date().toDateString();
@@ -64,7 +64,7 @@ angular.module('starter.services', [])
 
   return {
     getStudents: function() {
-      return students;
+      return $localForage.getItem('students');
     },
     removeStudent: function(student) {
       // chats.splice(chats.indexOf(chat), 1);
@@ -77,6 +77,19 @@ angular.module('starter.services', [])
     },
     setData: function (dep, sec, data) {
       return $localForage.setItem(RegisterKey + dep + sec, data);
+    },
+    addStudent: function (newStudent) {
+      $localForage.getItem('students')
+        .then(function (data) {
+          console.log(data);
+          if(!data)
+            data = [];
+          data.push(newStudent);
+          $localForage.setItem('students', data)
+            .then(function () {
+              console.log("new Data", data)
+            })
+        })
     }
   };
 });
