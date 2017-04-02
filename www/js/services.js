@@ -1,51 +1,83 @@
 angular.module('starter.services', [])
     
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.factory('db', function($localForage) {
 
-  // Some fake testing data
-  const chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png',
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png',
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg',
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png',
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png',
-  }];
+  var RegisterKey = 'Register' + ' ' + new Date().toDateString();
+
+  var students = [
+    {
+      name: 'Anjali',
+      roll: '1',
+      section: 'Girls A',
+      department: 'BCA',
+      present: false
+    },
+    {
+      name: 'Ankita',
+      roll: '2',
+      section: 'Girls A',
+      department: 'BCA',
+      present: false
+    },
+    {
+      name: 'Anuradha',
+      roll: '3',
+      section: 'Girls A',
+      department: 'MCA',
+      present: false
+    },
+    {
+      name: 'Dhara',
+      roll: '4',
+      section: 'Girls B',
+      department: 'MCA',
+      present: false
+    }
+  ];
+  var sections = [
+    {
+      id: 1,
+      label: 'Girls A',
+      department: 'BCA'
+    },
+    {
+      id: 2,
+      label: 'Girls B',
+      department: 'BCA'
+    },
+    {
+      id: 3,
+      label: 'Boys A',
+      department: 'BCA'
+    },
+    {
+      id: 4,
+      label: 'Girls B',
+      department: 'MCA'
+    },
+    {
+      id: 5,
+      label: 'Girls A',
+      department: 'MCA'
+    }
+  ];
 
   return {
-    all: function() {
-      return chats;
+    getStudents: function() {
+      return students;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    removeStudent: function(student) {
+      // chats.splice(chats.indexOf(chat), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
+    getSections: function() {
+      return sections;
     },
+    getData: function (dep, sec) {
+      return $localForage.getItem(RegisterKey + dep + sec)
+    },
+    setData: function (dep, sec, data) {
+      return $localForage.setItem(RegisterKey + dep + sec, data);
+    }
   };
 });
 

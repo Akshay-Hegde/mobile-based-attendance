@@ -1,6 +1,28 @@
-<ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    </ion-list>
+<ion-view view-title="Manage Students">
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Department
+        </div>
+        <select ng-change="selectedDepartment(department)" ng-model="department">
+          <option ng-repeat="department in ac.departments track by $index">{{department.label}}</option>
+        </select>
+      </label>
+      <label class="item item-input item-select" ng-if="department">
+        <div class="input-label">f
+          Section
+        </div>
+        <select ng-change="selectedSection(department, section)" ng-model="section">
+          <option ng-repeat="section in ac.sections track by $index">{{section.label}}</option>
+        </select>
+      </label>
+      <hr>
+      <ion-list>
+        <ion-checkbox ng-model="student.present" ng-checked="student.present"
+                      ng-repeat="student in ac.students track by $index">{{student.roll}}. {{student.name}}
+        </ion-checkbox>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-view>
