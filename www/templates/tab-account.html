@@ -22,7 +22,7 @@
       </label>
       <hr>
       <ion-list>
-        <div class="item item-button-right" ng-repeat="student in ac.students">
+        <div class="item item-button-right" ng-repeat="student in ac.students track by $index">
           {{student.roll}}. {{student.name}}
           <button class="button" ng-click="ac.removeStudent(student)">
             <i class="icon ion-android-delete"></i>

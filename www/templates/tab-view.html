@@ -1,5 +1,7 @@
 <ion-view view-title="Report">
   <ion-nav-buttons side="right">
+    <button ng-if="vc.students.length" class="button button-clear icon ion-stats-bars"
+            ng-click="vc.openModal()"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
     <div class="list">
@@ -21,8 +23,11 @@
       </label>
       <hr>
       <ion-list>
-        <ion-checkbox ng-model="student.present" ng-checked="student.present" ng-repeat="student in vc.students track by $index">{{student.roll}}. {{student.name}}
-        </ion-checkbox>
+        <div class="item item-icon-right" ng-repeat="student in vc.students track by $index">
+          {{student.roll}}. {{student.name}}
+          <i ng-if="!student.present" class="icon ion-ios-circle-outline"></i>
+          <i ng-if="student.present" class="icon ion-ios-checkmark-outline"></i>
+        </div>
       </ion-list>
     </div>
   </ion-content>

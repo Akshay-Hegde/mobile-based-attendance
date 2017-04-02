@@ -1,44 +1,31 @@
 <ion-modal-view>
-	<ion-header-bar>
-		<div class="buttons">
-			<button class="button button-icon icon ion-android-close" ng-click="lc.closeModal()"></button>
-		</div>
-		<h1 class="title">Add Entry</h1>
-		<div class="buttons">
-			<button
-					class="button button-icon icon ion-checkmark"
-					ng-click="lc.addLiability()"></button>
-		</div>
-	</ion-header-bar>
-	<ion-content>
-		<div class="row">
-			<div class="col">
-				<div class="list">
-
-					<label class="item item-input item-select">
-						<div class="input-label">
-							Reference
-						</div>
-						<select ng-options="option as option for option in lc.entry.options | orderBy: option" ng-model="lc.entry.ref" >
-							<option value="" disabled selected>Select</option>
-							<option>{{option}}</option>
-						</select>
-					</label>
-				</div>
-			</div>
-		</div>
-		<div class="row" ng-if="lc.entry.ref">
-			<div class="col">
-				<div class="list">
-					<label class="item item-input item-floating-label">
-						<span class="input-label">Amount</span>
-						<input ng-model="lc.entry.amount" type="number" placeholder="Amount">
-					</label>
-				</div>
-			</div>
-		</div>
-	</ion-content>
-	<ion-footer-bar class="bar-stable" align-title="center" ng-click="lc.addLiability(lc.entry)">
-		<h1 class="title">Create Entry</h1>
-	</ion-footer-bar>
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-icon icon ion-chevron-left" ng-click="vcm.previousDay()"></button>
+    </div>
+    <h1 class="title">{{vcm.currentDate| date :shortDate}}</h1>
+    <div class="buttons">
+      <button
+          class="button button-icon icon ion-android-close"
+          ng-click="vcm.closeModal()"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card" ng-if="vcm.totalStudents">
+      <div class="item item-text-wrap">
+        <h3>Total Students Present: <strong style="float: right">{{vcm.studentsPresent}}</strong></h3>
+        <h3>Total Students Absent: <strong style="float: right">{{vcm.totalStudents - vcm.studentsPresent}}</strong></h3>
+        <hr>
+        <h2>Total Students Present: <strong style="float: right">{{vcm.totalStudents}}</strong></h2>
+      </div>
+    </div>
+    <div class="card" ng-if="!vcm.totalStudents">
+      <div class="item item-text-wrap">
+        <h2>Attendance not available!</h2>
+      </div>
+    </div>
+  </ion-content>
+  <!--<ion-footer-bar class="bar-stable" align-title="center" ng-click="lc.addLiability(lc.entry)">-->
+  <!--<h1 class="title">Create Entry</h1>-->
+  <!--</ion-footer-bar>-->
 </ion-modal-view>

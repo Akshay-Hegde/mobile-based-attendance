@@ -61,7 +61,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         views: {
           'tab-view': {
             templateUrl: 'templates/tab-view.html',
-            controller: 'ViewCtrl as vc'
+            controller: 'ViewCtrl as vc',
+            resolve: {
+              viewReport: function ($ionicModal, $rootScope) {
+                return $ionicModal.fromTemplateUrl('templates/addNewOutEntry.html', {
+                  scope: $rootScope,
+                  animation: 'slide-in-up'
+                })
+              }
+            }
           }
         }
       })

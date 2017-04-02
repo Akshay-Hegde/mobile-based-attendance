@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-  .controller('RegisterCtrl', function ($scope, $firebaseArray, $localForage, $ionicPopup, db) {
+  .controller('RegisterCtrl', function ($scope, $localForage, $ionicPopup, db) {
     var rc = angular.extend(this, {
       departments: [
         {
@@ -103,7 +103,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ViewCtrl', function ($scope, db) {
+  .controller('ViewCtrl', function ($scope, db, viewReport, $localForage) {
     var vc = angular.extend(this, {
       departments: [
         {
@@ -128,7 +128,8 @@ angular.module('starter.controllers', [])
       selSec: '',
       selDep: '',
       allstudents: [],
-      allsections: db.getSections() || []
+      allsections: db.getSections() || [],
+      openModal: openModal
     });
 
     db.getStudents()
@@ -186,6 +187,55 @@ angular.module('starter.controllers', [])
       })
     }
 
+    function openModal() {
+      var scope = viewReport.scope;
+      scope.vcm = {
+        currentDate: new Date(),
+        departments: vc.departments,
+        selDep: vc.selDep,
+        selSec: vc.selSec,
+        allsections: db.getSections() || [],
+        closeModal: closeModal,
+        previousDay: previousDay,
+        totalStudents: '',
+        studentsPresent: ''
+      };
+      getStats();
+      viewReport.show();
+
+      function closeModal() {
+        viewReport.hide();
+      }
+
+      function previousDay() {
+        var d = new Date();
+        d.setDate(scope.vcm.currentDate.getDate() - 1);
+        scope.vcm.currentDate = d;
+        getStats();
+      }
+
+      function getStats() {
+        var RegisterKey = 'Register' + ' ' + scope.vcm.currentDate.toDateString();
+        $localForage.getItem(RegisterKey + scope.vcm.selDep + scope.vcm.selSec)
+          .then(function (data) {
+            console.log(data);
+            if (!data)
+              data = {record: []};
+            scope.vcm.totalStudents = data.record.length;
+            scope.vcm.studentsPresent = data.record
+              .map(function (student) {
+                return student.present
+              })
+              .reduce(function (data, n) {
+                if (n)
+                  return data + 1;
+                else
+                  return data
+              }, 0)
+          })
+      }
+    }
+
   })
 
   .controller('AccountCtrl', function ($scope, db, newStudentEntry) {
@@ -215,7 +265,7 @@ angular.module('starter.controllers', [])
       allstudents: [],
       allsections: db.getSections() || [],
       removeStudent: removeStudent,
-      openModal: openModal
+      openModal: openModal,
     });
 
     db.getStudents()
@@ -322,8 +372,8 @@ angular.module('starter.controllers', [])
         scope.acm.newStudent.section = scope.acm.selSec;
         scope.acm.newStudent.department = scope.acm.selDep;
         db.addStudent(scope.acm.newStudent);
-        if(!ac.allstudents)
-          ac.allstudents=[];
+        if (!ac.allstudents)
+          ac.allstudents = [];
         ac.allstudents.push(scope.acm.newStudent);
         ac.students = _.filter(ac.allstudents, function (val) {
           return val.department == ac.selDep && val.section == ac.selSec
