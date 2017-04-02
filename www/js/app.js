@@ -65,23 +65,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
-      .state('tab.chat-detail', {
-        url: '/chats/:chatId',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/chat-detail.html',
-            controller: 'ChatDetailCtrl',
-            resolve: {
-              // newRegisterEntry: function ($ionicModal, $rootScope) {
-              //   return $ionicModal.fromTemplateUrl('templates/addNewInEntry.html', {
-              //     scope: $rootScope,
-              //     animation: 'slide-in-up'
-              //   })
-              // }
-            }
-          }
-        }
-      })
 
       .state('tab.account', {
         url: '/account',

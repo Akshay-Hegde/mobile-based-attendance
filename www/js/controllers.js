@@ -274,7 +274,13 @@ angular.module('starter.controllers', [])
     }
 
     function removeStudent(student) {
-
+      db.removeStudent(student);
+      ac.students = _.filter(ac.students, function (val) {
+        return student.roll != val.roll;
+      });
+      ac.allstudents = _.filter(ac.students, function (val) {
+        return student.roll != val.roll;
+      })
     }
 
     function openModal() {
@@ -316,11 +322,14 @@ angular.module('starter.controllers', [])
         scope.acm.newStudent.section = scope.acm.selSec;
         scope.acm.newStudent.department = scope.acm.selDep;
         db.addStudent(scope.acm.newStudent);
+        if(!ac.allstudents)
+          ac.allstudents=[];
+        ac.allstudents.push(scope.acm.newStudent);
+        ac.students = _.filter(ac.allstudents, function (val) {
+          return val.department == ac.selDep && val.section == ac.selSec
+        });
+
         newStudentEntry.hide();
       }
     }
-  })
-
-  .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
   });
